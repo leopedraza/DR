@@ -9,8 +9,8 @@
 
     - name: Restaurar configuración de Apache
       copy:
-        src: ../files/backup/reports/tmp/web-backup/apache.conf
-        dest: /etc/httpd/conf/apache2.conf
+        src: ../files/backup/reports/tmp/web-backup/httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
 
     - name: Restaurar contenido web
       unarchive:
