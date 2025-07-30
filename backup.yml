@@ -17,8 +17,14 @@
       shell: |
         tar czf /tmp/web-backup/html.tar.gz /var/www/html
 
-    - name: Descargar backup al nodo de control
+    - name: Descargar backup conf al nodo de control
       fetch:
-        src: /tmp/web-backup/
+        src: /tmp/web-backup/httpd.conf
+        dest: ../files/backup/
+        flat: no
+
+    - name: Descargar backup html al nodo de control
+      fetch:
+        src: /tmp/web-backup/html.tar.gz
         dest: ../files/backup/
         flat: no
