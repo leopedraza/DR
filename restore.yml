@@ -16,7 +16,7 @@
     - name: Restaurar contenido web
       unarchive:
         src: /tmp/web-backup/html.tar.gz
-        dest: /var/www/
+        dest: /
         remote_src: yes
 
     - name: Iniciar Apache
