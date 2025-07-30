@@ -9,12 +9,12 @@
 
     - name: Restaurar configuración de Apache
       copy:
-        src: ../files/backup/reports/tmp/web-backup/httpd.conf
+        src: /tmp/web-backup/httpd.conf
         dest: /etc/httpd/conf/httpd.conf
 
     - name: Restaurar contenido web
       unarchive:
-        src: ../files/backup/reports/tmp/web-backup/html.tar.gz
+        src: /tmp/web-backup/html.tar.gz
         dest: /var/www/
         remote_src: no
 
