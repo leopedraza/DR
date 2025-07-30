@@ -1,5 +1,5 @@
 - name: Backup del servidor web
-  hosts: primary
+  hosts: reports
   become: true
   tasks:
     - name: Crear carpeta de backup
@@ -7,10 +7,10 @@
         path: /tmp/web-backup
         state: directory
 
-    - name: Copiar archivo de configuración de Nginx
+    - name: Copiar archivo de configuración de Apache
       copy:
-        src: /etc/nginx/nginx.conf
-        dest: /tmp/web-backup/nginx.conf
+        src: /etc/httpd/conf/apache2.conf
+        dest: /tmp/web-backup/apache2.conf
         remote_src: yes
 
     - name: Empaquetar archivos del sitio web
