@@ -26,5 +26,5 @@
 
     - name: Validar disponibilidad del sitio restaurado
       uri:
-        url: http://{{ inventory_hostname }}
+        url: http://{{ ansible_host }}
         return_content: yes
