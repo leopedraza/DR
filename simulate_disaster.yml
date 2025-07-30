@@ -1,0 +1,13 @@
+- name: Simulación de desastre
+  hosts: primary
+  become: true
+  tasks:
+    - name: Eliminar contenido web
+      file:
+        path: /var/www/html
+        state: absent
+
+    - name: Detener nginx
+      service:
+        name: nginx
+        state: stopped
