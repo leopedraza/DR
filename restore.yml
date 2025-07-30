@@ -1,0 +1,29 @@
+- name: Restaurar servidor de recuperación
+  hosts: recovery
+  become: true
+  tasks:
+    - name: Instalar Nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Restaurar configuración de Nginx
+      copy:
+        src: ../files/backup/primary/etc/nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+
+    - name: Restaurar contenido web
+      unarchive:
+        src: ../files/backup/primary/tmp/web-backup/html.tar.gz
+        dest: /var/www/
+        remote_src: no
+
+    - name: Iniciar Nginx
+      service:
+        name: nginx
+        state: started
+
+    - name: Validar disponibilidad del sitio restaurado
+      uri:
+        url: http://{{ inventory_hostname }}
+        return_content: yes
