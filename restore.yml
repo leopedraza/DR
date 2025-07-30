@@ -2,25 +2,25 @@
   hosts: recovery
   become: true
   tasks:
-    - name: Instalar Nginx
+    - name: Instalar Apache
       package:
-        name: nginx
+        name: "{{ apache }}"
         state: present
 
-    - name: Restaurar configuración de Nginx
+    - name: Restaurar configuración de Apache
       copy:
-        src: ../files/backup/primary/etc/nginx/nginx.conf
-        dest: /etc/nginx/nginx.conf
+        src: ../files/backup/reports/tmp/web-backup/apache.conf
+        dest: /etc/httpd/conf/apache2.conf
 
     - name: Restaurar contenido web
       unarchive:
-        src: ../files/backup/primary/tmp/web-backup/html.tar.gz
+        src: ../files/backup/reports/tmp/web-backup/html.tar.gz
         dest: /var/www/
         remote_src: no
 
-    - name: Iniciar Nginx
+    - name: Iniciar Apache
       service:
-        name: nginx
+        name: httpd
         state: started
 
     - name: Validar disponibilidad del sitio restaurado
