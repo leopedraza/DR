@@ -9,8 +9,8 @@
 
     - name: Copiar archivo de configuración de Apache
       copy:
-        src: /etc/httpd/conf/apache2.conf
-        dest: /tmp/web-backup/apache2.conf
+        src: /etc/httpd/conf/httpd.conf
+        dest: /tmp/web-backup/httpd.conf
         remote_src: yes
 
     - name: Empaquetar archivos del sitio web
