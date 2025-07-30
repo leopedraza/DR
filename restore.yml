@@ -11,12 +11,13 @@
       copy:
         src: /tmp/web-backup/httpd.conf
         dest: /etc/httpd/conf/httpd.conf
+        remote_src: yes
 
     - name: Restaurar contenido web
       unarchive:
         src: /tmp/web-backup/html.tar.gz
         dest: /var/www/
-        remote_src: no
+        remote_src: yes
 
     - name: Iniciar Apache
       service:
