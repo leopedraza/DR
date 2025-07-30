@@ -4,7 +4,7 @@
   tasks:
     - name: Instalar Apache
       package:
-        name: "{{ apache }}"
+        name: "httpd"
         state: present
 
     - name: Restaurar configuración de Apache
