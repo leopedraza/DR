@@ -1,0 +1,24 @@
+- name: Backup del servidor web
+  hosts: primary
+  become: true
+  tasks:
+    - name: Crear carpeta de backup
+      file:
+        path: /tmp/web-backup
+        state: directory
+
+    - name: Copiar archivo de configuración de Nginx
+      copy:
+        src: /etc/nginx/nginx.conf
+        dest: /tmp/web-backup/nginx.conf
+        remote_src: yes
+
+    - name: Empaquetar archivos del sitio web
+      shell: |
+        tar czf /tmp/web-backup/html.tar.gz /var/www/html
+
+    - name: Descargar backup al nodo de control
+      fetch:
+        src: /tmp/web-backup/
+        dest: ../files/backup/
+        flat: no
