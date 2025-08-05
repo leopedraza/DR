@@ -6,7 +6,19 @@
       package:
         name: "httpd"
         state: present
-
+        
+    - name: Copiar archivo
+      ansible.builtin.copy:
+        src: files/httpd.conf
+        dest: /tmp/web-backup/httpd.conf
+        mode: '0644'
+        
+    - name: Copiar archivo
+      ansible.builtin.copy:
+        src: files/html.tar.gz
+        dest: /tmp/web-backup/httpd.conf
+        mode: '0644'
+        
     - name: Restaurar configuración de Apache
       copy:
         src: /tmp/web-backup/httpd.conf
