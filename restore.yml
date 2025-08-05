@@ -16,7 +16,7 @@
     - name: Copiar archivo
       ansible.builtin.copy:
         src: html.tar.gz
-        dest: /tmp/web-backup/httpd.conf
+        dest: /tmp/web-backup/html.tar.gz
         mode: '0644'
         
     - name: Restaurar configuración de Apache
