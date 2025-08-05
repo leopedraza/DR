@@ -28,3 +28,24 @@
         src: /tmp/web-backup/html.tar.gz
         dest: ../files/backup/
         flat: no
+        
+- name: Copia archivos a destino
+  hosts: aws_rhel9
+  become: true
+  tasks:
+    - name: Crear carpeta de backup
+      file:
+        path: /tmp/web-backup
+        state: directory
+        
+    - name: Copiar configuración de Apache
+      copy:
+        src: ../files/backup/tmp/web-backup/httpd.conf
+        dest: /tmp/web-backup/httpd.conf
+        remote_src: no
+        
+    - name: Copiar contenido web
+      copy:
+        src: ../files/backup/tmp/web-backup/html.tar.gz
+        dest: /tmp/web-backup/html.tar.gz
+        remote_src: no
