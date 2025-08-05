@@ -6,6 +6,11 @@
       package:
         name: "httpd"
         state: present
+
+    - name: Crear carpeta de backup
+      file:
+        path: /tmp/web-backup
+        state: directory
         
     - name: Copiar archivo
       ansible.builtin.copy:
