@@ -9,13 +9,13 @@
         
     - name: Copiar archivo
       ansible.builtin.copy:
-        src: files/httpd.conf
+        src: httpd.conf
         dest: /tmp/web-backup/httpd.conf
         mode: '0644'
         
     - name: Copiar archivo
       ansible.builtin.copy:
-        src: files/html.tar.gz
+        src: html.tar.gz
         dest: /tmp/web-backup/httpd.conf
         mode: '0644'
         
