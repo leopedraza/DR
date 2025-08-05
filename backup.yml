@@ -28,6 +28,14 @@
         src: /tmp/web-backup/html.tar.gz
         dest: ../files/backup/
         flat: no
+
+    - name: Copiar archivo a host_destino
+      ansible.builtin.synchronize:
+        src: /tmp/web-backup/httpd.conf
+        dest: /tmp/web-backup/httpd.conf
+        mode: push
+        dest_host: aws_rhel9
+      delegate_to: reports
         
 - name: Copia archivos a destino
   hosts: aws_rhel9
